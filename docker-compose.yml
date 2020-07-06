@@ -2,6 +2,10 @@ version: "3"
 networks:
   chat:
 
+volumes: 
+  dynamodb_data:
+    external: true
+  
 services:
   # Launch the Redis used for syncing messages between copies of the client app
   redis:
@@ -13,11 +17,14 @@ services:
 
   # Launch a local version of DynamoDB
   dynamodb-local:
+    image: amazon/dynamodb-local
+    command: ["-jar", "DynamoDBLocal.jar", "-sharedDb", "-dbPath", "/home/dynamodblocal/data"]
     networks:
       - chat
-    build: ./deps/dynamodb-local
     ports:
       - 8000:8000
+    volumes:
+     - dynamodb_data:/home/dynamodblocal/data
 
   # Ephemeral container used for creating the tables in DynamoDB
   dynamodb-tables:

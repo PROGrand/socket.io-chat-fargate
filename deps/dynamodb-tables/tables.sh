@@ -37,3 +37,4 @@ aws dynamodb create-table \
   --key-schema AttributeName=room,KeyType=HASH AttributeName=message,KeyType=RANGE \
   --attribute-definitions AttributeName=room,AttributeType=S AttributeName=message,AttributeType=S \
   --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10
+
