@@ -44,7 +44,7 @@ Resources:
     Type: AWS::ElastiCache::CacheCluster
     Properties:
       Engine: redis
-      CacheNodeType: cache.m4.large
+      CacheNodeType: cache.m5.large
       NumCacheNodes: 1
       CacheSubnetGroupName: !Ref 'RedisSubnetGroup'
       VpcSecurityGroupIds:
